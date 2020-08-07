@@ -1,0 +1,163 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Globant_PriyaRavikumar
+{
+    class UserAndRealtionships
+    {
+        public string UserName { get; set; }
+        public List<string> Relation { get; set; }
+    }
+    class Program
+    {
+
+        public  string FindRelation(string userName)
+        {
+            string relation="";
+            //Master Insertion ToList
+            List<UserAndRealtionships> userAndRealtionships = new List<UserAndRealtionships>();
+            List<string> _Realtion = new List<string>();
+            _Realtion.Add("Blob");
+            _Realtion.Add("Emma");
+             userAndRealtionships.Add(new UserAndRealtionships
+            {
+                UserName = "Mike",
+                Relation = _Realtion
+
+            });
+
+            List<string> _Realtion1 = new List<string>();
+            _Realtion.Add("Mike");
+            _Realtion.Add("John");
+            _Realtion.Add("Emma");
+            _Realtion.Add("Jill");
+
+            userAndRealtionships.Add(new UserAndRealtionships
+            {
+                UserName = "Blob",
+                Relation = _Realtion1
+
+            });
+            List<string> _Realtion2 = new List<string>();
+            _Realtion2.Add("Mike");
+            _Realtion2.Add("Blob");
+            _Realtion2.Add("Shane");
+            _Realtion2.Add("Liz");
+            _Realtion2.Add("Jill");
+            userAndRealtionships.Add(new UserAndRealtionships
+            {
+                UserName = "Emma",
+                Relation = _Realtion2
+
+            });
+            List<string> _Realtion3 = new List<string>();
+            _Realtion3.Add("Blob");
+            _Realtion3.Add("Emma");
+            _Realtion3.Add("John");
+            _Realtion3.Add("Shane");
+            userAndRealtionships.Add(new UserAndRealtionships
+            {
+                UserName = "Jill",
+                Relation = _Realtion3
+
+            });
+            List<string> _Realtion4 = new List<string>();
+            _Realtion4.Add("Blob");
+            _Realtion4.Add("Leah");
+            _Realtion4.Add("Jill");
+            _Realtion4.Add("Shane");
+            userAndRealtionships.Add(new UserAndRealtionships
+            {
+                UserName = "John",
+                Relation = _Realtion4
+
+            });
+            List<string> _Realtion5 = new List<string>();
+            _Realtion5.Add("John");
+            _Realtion5.Add("Emma");
+
+            _Realtion5.Add("Leah");
+            _Realtion5.Add("Jill");
+            _Realtion5.Add("Liz");
+            userAndRealtionships.Add(new UserAndRealtionships
+            {
+                UserName = "Shane",
+                Relation = _Realtion5
+                
+            });
+            List<string> _Realtion6 = new List<string>();
+            _Realtion6.Add("John");
+            _Realtion6.Add("Shane");
+            _Realtion6.Add("Jill");
+            userAndRealtionships.Add(new UserAndRealtionships
+            {
+                UserName = "Leah",
+                Relation = _Realtion6
+            });
+            List<string> _Realtion7 = new List<string>();
+            _Realtion7.Add("Emma");
+            _Realtion7.Add("Shane");
+            _Realtion7.Add("Allen");
+            userAndRealtionships.Add(new UserAndRealtionships
+            {
+                UserName = "Liz",
+                Relation = _Realtion7
+
+            });
+            List<string> _Realtion8 = new List<string>();
+            _Realtion8.Add("Liz");
+            _Realtion8.Add("Lisa");
+            userAndRealtionships.Add(new UserAndRealtionships
+            {
+                UserName = "Allen",
+                Relation = _Realtion8
+            });
+            List<string> _Realtion9 = new List<string>();
+            _Realtion9.Add("Allen");
+            userAndRealtionships.Add(new UserAndRealtionships
+            {
+                UserName = "Lisa",
+                Relation = _Realtion9
+            });
+
+
+            var useFilter = userAndRealtionships.Where(x => x.UserName.Contains(userName)).ToList();
+           var _temp = useFilter.Select(x => x.Relation).ToArray();
+
+            string values="";
+           
+                for (int i = 0; i < _temp[0].Count(); i++)
+            {
+                if (values == "")
+                    values = _temp[0][i];
+                else
+                    values = values + ","+ _temp[0][i];
+            }
+
+            relation = _temp[0].Count + "{" +values+ "}";
+            return relation;
+
+        }
+
+        static void Main(string[] args)
+        {
+            string userName;string result="";
+            Program p = new Program();
+
+            Console.WriteLine("Kindly enter the user name");
+            userName = Console.ReadLine();
+            if (userName != "")
+            {
+                result = p.FindRelation(userName);
+                Console.WriteLine(result);
+                Console.ReadLine();
+            }
+
+
+            
+        }
+    }
+}
